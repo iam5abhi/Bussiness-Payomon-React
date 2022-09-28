@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Bars } from  'react-loader-spinner'
 import LoadingSpinner from "./LoadingSpinner";
 import axios from 'axios';
+import { BaseUrl } from '../BaseUrl';
 
 
 
@@ -26,7 +27,7 @@ const Login = () => {
             setPasswordErrorMsg('enter your password')
         }
         setIsLoading(true)
-        axios.post('http://localhost:7700/api/signin',
+        axios.post(`${BaseUrl.url}/api/signin`,
           ragisterData,
           {
             headers: { "Content-Type": "application/json" },
