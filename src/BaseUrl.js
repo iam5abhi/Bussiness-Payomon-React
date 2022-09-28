@@ -1,3 +1,3 @@
 exports.BaseUrl={
-    url:'http://localhost:7700'
+    url:'https://payomon-api.herokuapp.com'
 }
