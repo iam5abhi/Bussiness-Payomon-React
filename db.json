@@ -1,0 +1,32 @@
+{
+  "account": [
+    {
+      "BusinessName": "codesoftic",
+      "BankName": "Sandeep sharma",
+      "AccountNumber": "7299001500006027",
+      "SwiftCode": "PUNB0729900",
+      "id": 1
+    },
+    {
+      "BusinessName": "shalini",
+      "BankName": "shalini",
+      "AccountNumber": "123345554545444545",
+      "SwiftCode": "sbi0729900",
+      "id": 2
+    },
+    {
+      "BusinessName": "sandeep",
+      "BankName": "sandeep",
+      "AccountNumber": "72990015777888",
+      "SwiftCode": "PUNB0729900",
+      "id": 3
+    },
+    {
+      "BusinessName": "SHALINIPAYOMAN",
+      "BankName": "STATE BANK OF INDIA",
+      "AccountNumber": "2316 25672 266",
+      "SwiftCode": "SBI2672907",
+      "id": 4
+    }
+  ]
+}

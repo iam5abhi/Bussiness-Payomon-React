@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body {
+    background: #DC2027 !important;
+}
+.container-fluid{
+    margin-top:50px;
+}
+.container-board {
+    background: white;
+}
+.row {
+    margin: 0px !important;
+}
+
+a {
+    color: #DC2027 !important;
+    text-decoration: none !important;
+    font-size: 1 rem;
+}
+h6.pl-4 {
+    font-size: 20px;
+}
+span.ms-2 {
+    font-size: 1 rem;
+    color: #0E0908;
+} 
+h5.form-heading.mb-4.p-2.text-center {
+    color: #0E0908;
+}
+.form-check-input:checked {
+    background-color: #DC2027 !important;
+    border-color:  #DC2027 !important;
+    font-size: 1 rem;
+}
+button.btn.btn-primary {
+    width: 100%;
+    background-color: #DC2027;
+    border:  #DC2027;
+}
+.input-group {
+    justify-content: space-between;
+}
+a.bottom-text {
+    color: #DC2027 !important;
+}
+/**************ACCOUNT************/
+img.bankprofileAvatars {
+    border-radius: 100px;
+}
+i.fa-solid.fa-building-columns {
+    font-size: 25px;
+    color:  #DC2027;
+}
+span {
+    color: #6C757D;
+}
+.paynow {
+    border: 1px solid rgb(52 197 57);
+    border-radius: 10px;
+    width: 70px;
+    font-size: 0.5 rem;
+    color: rgb(52 197 57);
+    background:white;
+}
+
+button.btn.btn-primary.add-money {
+    width: 116px;
+}
+i.fa-solid.fa-building-columns.transfer {
+    color: white;
+    font-size: 16px;
+}
+button.btn.btn-primary.swipe {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+.input-group.next-button {
+    justify-content: center;
+}
+button.btn.btn-primary.add-new-account{
+    background: white;
+    color: #DC2027;
+    border: 1px solid #DC2027;
+}
+.errorMsg{
+    font-size: 0.950rem;
+    color: #ff0000;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.toast{
+    background: green;
+    color: #fff; 
+}
+.eye{
+    position: relative;
+    bottom: 36px;
+    left: 94%;
+  }
+  .eye:hover {
+    color: #ff0000;
+    cursor: pointer;
+  }
