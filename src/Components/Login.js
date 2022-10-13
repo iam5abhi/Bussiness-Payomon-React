@@ -28,11 +28,10 @@ const Login = () => {
         }
         setIsLoading(true)
         axios.post(`${BaseUrl.url}/api/signin`,
-          ragisterData,
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
+           headers: { 
+               'Content-Type': 'application/x-www-form-urlencoded'
+              },
+          ragisterData
         ).then((res)=>{
 
             console.log(res.data)
