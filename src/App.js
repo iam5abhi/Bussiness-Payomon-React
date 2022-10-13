@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Account from "./Components/Account";
 // import AddAccount from "./Components/AddAccount";
 // import TransferBank from "./Components/TransferBank";
@@ -8,7 +7,7 @@ import PrivateRoute from './routes/PrivateRoutes'
 import ForgetPassword from "./Components/ForgetPassword";
 // import PaymentProcess from "./Components/PaymentProcess";
 import PasswordReset from "./Components/PasswordReset";
-import { Routes,Route, Navigate } from 'react-router-dom';
+import { Routes,Route } from 'react-router-dom';
 
 function App() {
   return (
