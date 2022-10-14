@@ -1,11 +1,11 @@
 import Account from "./Components/Account";
-// import AddAccount from "./Components/AddAccount";
-// import TransferBank from "./Components/TransferBank";
+import AddAccount from "./Components/AddAccount";
+import TransferBank from "./Components/TransferBank";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
-import PrivateRoute from './routes/PrivateRoutes'
+// import PrivateRoute from './routes/PrivateRoutes'
 import ForgetPassword from "./Components/ForgetPassword";
-// import PaymentProcess from "./Components/PaymentProcess";
+import PaymentProcess from "./Components/PaymentProcess";
 import PasswordReset from "./Components/PasswordReset";
 import { Routes,Route } from 'react-router-dom';
 
@@ -14,7 +14,11 @@ function App() {
     
     <>
       <Routes>
-        <Route path='/' element={<PrivateRoute><Account/></PrivateRoute> }/>
+        {/* <Route path='/' element={<PrivateRoute><Account/></PrivateRoute> }/> */}
+        <Route path='/' element={ < Account/> } />
+        <Route path='/addaccount' element={ < AddAccount/> } />
+        <Route path='/paymentprocess' element={ < PaymentProcess/> } />
+        <Route path='/withdraw-to-bank' element={ < TransferBank/> } />
         <Route path='/forgetpassword' element={ < ForgetPassword/> } />
         <Route path='/passwordreset' element={ < PasswordReset/> } />
         <Route path='/signup' element={ < Signup />} />

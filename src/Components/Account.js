@@ -124,12 +124,12 @@ const Account = () => {
             <div className="col-sm-2 col-md-2 pt-4">
               <ul className="list-unstyled d-flex ">
                 <li>
-                  <a to="/transferbank">
+                  <NavLink to="/withdraw-to-bank">
                     <button type="submit" className="btn btn-primary add-money">
                       <img src="img/top-up.png" style={{ width: 20 }} />{" "}
                       &nbsp;To Bank
                     </button>
-                  </a>
+                  </NavLink>
                 </li>
                 &nbsp;
                 <li>
