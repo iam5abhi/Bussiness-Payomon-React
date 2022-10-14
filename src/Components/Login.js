@@ -22,22 +22,22 @@ const Login = () => {
     })
     console.log("ragisterData",ragisterData)
     const LoginHandler =()=>{
-        // if(!ragisterData.emailaddress || !ragisterData.password ){
-        //     setEmailErrorMsg('BusinessEmail your email address')
-        //     setPasswordErrorMsg('enter your password')
-        // }
-        // setIsLoading(true)
-        // axios.post(`${BaseUrl.url}/api/signin`,
-        //   ragisterData
-        // ).then((res)=>{
+       if(!ragisterData.emailaddress || !ragisterData.password ){
+           setEmailErrorMsg('BusinessEmail your email address')
+           setPasswordErrorMsg('enter your password')
+       }
+       setIsLoading(true)
+       axios.post(`${BaseUrl.url}/api/signin`,
+         ragisterData
+       ).then((res)=>{
 
-        //     console.log(res.data)
-        //     window.localStorage.setItem('refreshToken',res.data.token)
-        //     setIsLoading(false)
-        //     navigate('/')
-        // }).catch((err)=>{
-        //     console.log(err)
-        // })
+           console.log(res.data)
+           window.localStorage.setItem('refreshToken',res.data.token)
+           setIsLoading(false)
+           navigate('/')
+       }).catch((err)=>{
+           console.log(err)
+       })
         navigate('/')
     };
     const inputHandler=(event)=>{
@@ -46,12 +46,12 @@ const Login = () => {
             [event.target.name]: event.target.value,
         })) 
     }
-    //   useEffect(() => {
-    //     let login = localStorage.getItem('login');
-    //     if(login){
-    //       navigate('/')
-    //     }
-    //   })
+     useEffect(() => {
+       let login = localStorage.getItem('login');
+       if(login){
+         navigate('/')
+       }
+     })
       const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
       };

@@ -1,32 +1,33 @@
 import React,{useState} from 'react';
+import { BaseUrl } from '../BaseUrl';
 import { NavLink,useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const url="http://localhost:3001/account"
-
 const AddAccount = () => {
   const navigate = useNavigate()
   const [accontDteails,setAccontDteails] = useState({
-    BusinessName: "",
+    AccountholderName: "",
     BankName: "",
     AccountNumber: "",
-    SwiftCode: ""
+    IFSC_CODE: ""
   });
-
-
+  console.log(accontDteails,"accontDteails")
   const AddAccountDetailSubmit= (e)=>{
     e.preventDefault();
-    // try {
-    //     axios.post(url, {
-    //         BusinessName: accontDteails.BusinessName,
-    //         BankName: accontDteails.BankName,
-    //         AccountNumber: accontDteails.AccountNumber,
-    //         SwiftCode: accontDteails.SwiftCode,
-    //     });
-    // } catch (error){
-    //     alert(error,"hello")
-    // }
+    axios({
+      method: 'post',
+      url: `${BaseUrl.url}/api/addbankdetails`,
+      headers:{
+        'Authorization':`Bearer ${window.localStorage.getItem('refreshToken')}`
+      },
+      data:accontDteails
+    }).then((res)=>{
+      console.log(res.data)
+      navigate('/withdraw-to-bank')
+    })
+    .catch((err)=>{
+     console.log(err.message)
+    })
   }
-
     const inputHandler=(event)=>{
         setAccontDteails((prestate) => ({
         ...prestate,
@@ -48,7 +49,7 @@ const AddAccount = () => {
                 <h4 className="form-heading my-4  text-center">Add Account</h4>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Business Name</label>
-                    <input type="name" onChange={inputHandler} name="BusinessName" className="form-control" id="exampleFormControlInput1" placeholder=" Enter Business Name" />
+                    <input type="name" onChange={inputHandler} name="AccountholderName" className="form-control" id="exampleFormControlInput1" placeholder=" Enter Business Name" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Bank Name</label>
@@ -60,12 +61,11 @@ const AddAccount = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Ifsc Code</label>
-                    <input type="text" onChange={inputHandler} name="SwiftCode" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
+                    <input type="text" onChange={inputHandler} name="IFSC_CODE" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
                 </div>
                 <br />
                 <button type="submit" className="btn btn-primary mb-3" onClick={AddAccountDetailSubmit}><NavLink to="/withdraw-to-bank" className="text-white">Confirm
                 &nbsp;<i className="fa-solid fa-arrow-right" /></NavLink></button>
-
                </div>
             </form>
          </div>
@@ -74,5 +74,4 @@ const AddAccount = () => {
  </div>
   )
 }
-
 export default AddAccount;

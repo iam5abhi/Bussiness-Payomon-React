@@ -1,21 +1,32 @@
 import React, { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import {BaseUrl} from '../BaseUrl'
 
 const TransferBank = () => {
-  const [showAccountDetail,setShowAccountDetail]=useState([]);
+  const [showAccountDetail,setShowAccountDetail]=useState();
+
+
+  const GetAccountDetails= async ()=>{
+    axios({
+      method: 'get',
+      url: `http://localhost:7700/api/added/bankdetail`,
+      headers:{
+        'Authorization':`Bearer ${window.localStorage.getItem('refreshToken')}`
+      }
+    }).then((res)=>{
+      setShowAccountDetail(res.data.data)
+    })
+    .catch((err)=>{
+     console.log(err.message)
+    })
+  }
+
   
-  console.log(showAccountDetail,'===================')
   useEffect(() => {
     GetAccountDetails();
-  },[])
-  const GetAccountDetails= async ()=>{
-    try {
-    const result = await axios.get("http://localhost:4000/account")
-    setShowAccountDetail(result.data)
-    } catch (error){
-        console.log(error,"No Data Found")
-    }}
+  },[window.localStorage.getItem('refreshToken')])
+ 
   return (
     <div>
       <div className="container-fluid ">
@@ -36,28 +47,16 @@ const TransferBank = () => {
                 <div className="row py-2 pay">
                   {/* ------------------------start to map -----------------------*/}
                   <div className="container  border rounded">
-                  {
+                  {!showAccountDetail?null:
                     showAccountDetail.map((data)=>{
                       return(
-                  <NavLink to="/paymentprocess" className="text-dark" key={data.id}>
+                  <NavLink to="/paymentprocess" className="text-dark" key={data._id}>
                     <div className="row p-2 pay ">
                       <div className="col-2">
-                        <img
-                          src="img/avatar.webp"
-                          className="bankprofileAvatars"
-                          style={{ width: 52 }}
-                        />
                       </div>
                       <div className="col-8 ps-4">
-                        <h6>  </h6>
-                          <span></span>
-                      </div>
-                      <div className="col-2 pt-2">
-                        <img
-                          src="img/SBI-logo.svg.png"
-                          className="bankprofileAvatars"
-                          style={{ width: 35 }}
-                        />
+                        <h6>{data.IFSC_CODE}</h6>
+                          <span>{data.AccountNumber}</span>
                       </div>
                     </div>
                     </NavLink>
