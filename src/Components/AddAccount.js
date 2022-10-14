@@ -60,7 +60,7 @@ const AddAccount = () => {
                     <input type="text" onChange={inputHandler} name="AccountNumber" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">Ifsc Code</label>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Swift Code</label>
                     <input type="text" onChange={inputHandler} name="IFSC_CODE" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
                 </div>
                 <br />
