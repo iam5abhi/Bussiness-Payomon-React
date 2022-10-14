@@ -10,7 +10,7 @@ const TransferBank = () => {
   const GetAccountDetails= async ()=>{
     axios({
       method: 'get',
-      url: `http://localhost:7700/api/added/bankdetail`,
+      url:`${BaseUrl.url}/api/added/bankdetail`,
       headers:{
         'Authorization':`Bearer ${window.localStorage.getItem('refreshToken')}`
       }
