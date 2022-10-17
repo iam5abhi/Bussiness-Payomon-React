@@ -22,7 +22,6 @@ const Signup = () => {
         BusinessPhonenumber:"",
         password:"",
         confirmpassword:"",
-        pin:""
     })
     const signupFromSubmit =(e)=>{
         e.preventDefault();
@@ -73,14 +72,8 @@ const Signup = () => {
             return;
         }if (ragisterData.password === ragisterData.confirmpassword) {
             setConfirmPasswordErrorMsg("");
-        }if (!regpin.test(ragisterData.pin)){
-            setPinErrMsg("enter area pincode")
-            return;
-        }if (regpin.test(ragisterData.pin)){
-            setPinErrMsg(" ")
-        }     
+        }    
         setIsLoading(true)
-        console.log(ragisterData,"cvgdj")
         const config={
             method: 'post',
             url:`${BaseUrl.url}/api/signup`,
@@ -139,10 +132,6 @@ const Signup = () => {
                                   <input type="password" name='confirmpassword' onChange={handleChange} className="form-control" id="exampleInputPassword1" placeholder="Confirm Password" />
                               </div>
                               <span className='errorMsg '>{confirmPasswordErrorMsg}</span >
-                              <div className="input-group">
-                                  <input type="text" name='pin' onChange={handleChange} className="form-control" id="exampleInputPassword1" placeholder="pin code" />
-                              </div>
-                              <span className='errorMsg '>{pinErrMsg}</span >
                               <button type="button" className="btn btn-primary mt-2" onClick={signupFromSubmit} disabled={isLoading} >Register&nbsp; <i className="fa-solid fa-arrow-right" /></button>
                               <ToastContainer />
                               <div className="row mt-1">
