@@ -22,9 +22,10 @@ const validationSchema = yup.object({
       .string('Enter Your Business Email')
       .required('Business Email is required')
       .matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "Invalid Email Format"),
-    BusinessPhonenumber: yup
-        .number('Only Number Allowed')
-        .required('Phone Number is required'),
+      BusinessPhonenumber: yup
+      .string('Only Number Allowed')
+      .required('Phone Number is required')
+      .matches(/^\+*[0-9]+$/,'Invaild Phone Number'),
     password: yup
         .string('Enter your password')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.")

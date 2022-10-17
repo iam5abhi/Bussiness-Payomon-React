@@ -1,26 +1,18 @@
 import React, { useState,useEffect } from 'react';
-import { Navigate, NavLink,useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ToastContainer, toast } from 'react-toastify';
+import { NavLink,useNavigate } from 'react-router-dom';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Bars } from  'react-loader-spinner'
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 import { BaseUrl } from '../BaseUrl';
-
-
-
 const Login = () => {
     const navigate = useNavigate()
-    const [showPassword,setShowPassword]=useState(false)
-    const[emailErrorMsg,setEmailErrorMsg]=useState('')
     const [isLoading, setIsLoading] = useState(false);
-    const[passwordErrorMsg,setPasswordErrorMsg]=useState('')
+    const [showPassword,setShowPassword]=useState(false)
     const[ragisterData,setragisterData]=useState({
         BusinessEmail:"",
         password:"",
     })
-    console.log("ragisterData",ragisterData)
     const eye_Password=()=>{
       if(!showPassword){
         setShowPassword(true)
@@ -28,30 +20,23 @@ const Login = () => {
         setShowPassword(false)
       }
     }
-    const LoginHandler =()=>{
-       if(!ragisterData.emailaddress || !ragisterData.password ){
-           setEmailErrorMsg('BusinessEmail your email address')
-           setPasswordErrorMsg('enter your password')
-       }
-       setIsLoading(true)
-       axios.post(`${BaseUrl.url}/api/signin`,
-         ragisterData
-       ).then((res)=>{
-           console.log(res.data)
-           window.localStorage.setItem('refreshToken',res.data.token)
-           setIsLoading(false)
-           navigate('/')
-       }).catch((err)=>{
-           console.log(err)
-       })
-        navigate('/')
-    };
     const inputHandler=(event)=>{
         setragisterData((prev)=>({
             ...prev,
             [event.target.name]: event.target.value,
-        })) 
+        }))
     }
+    const LoginHandler =()=>{
+       setIsLoading(true)
+       axios.post(`${BaseUrl.url}/api/signin`,
+         ragisterData
+       ).then((res)=>{
+           window.localStorage.setItem('refreshToken',res.data.token)
+           navigate('/')
+       }).catch((err)=>{
+           console.log(err)
+       })
+    };
      useEffect(() => {
        let login = localStorage.getItem('refreshToken');
        if(login){
@@ -63,7 +48,7 @@ const Login = () => {
         {isLoading ? <LoadingSpinner /> : <>
         <div className="container-fluid">
               <div className="row">
-                  <div className="col-sm-2 col-md-4">  
+                  <div className="col-sm-2 col-md-4">
                   </div>
                   <div className="col-sm-8 col-md-4">
                       <form>
@@ -73,28 +58,25 @@ const Login = () => {
                               </div>
                                 <h5 className="form-heading mb-4 p-2 text-center">Login to payoman</h5>
                               <div className="input-group mb-1">
-                                  <input type="text" 
-                                  name='BusinessEmail' onChange={inputHandler} 
+                                  <input type="text"
+                                  name='BusinessEmail' onChange={inputHandler}
                                   className="form-control" id="exampleInputNumber1" placeholder="Enter phone number" />
                               </div>
-                              <span className='errorMsg '>{emailErrorMsg}</span >
                               <div className="input-group mb-1 mt-2">
                                   <input type={showPassword ? "text" : "password"}
-                                  name='password' onChange={inputHandler} 
+                                  name='password' onChange={inputHandler}
                                   className="form-control" id="exampleInputPassword1" placeholder="Enter password" />
                               </div>
                               <span className="eye">{!showPassword ? <i onClick={eye_Password} className="fa-sharp fa-solid fa-eye-slash"></i> : <i onClick={eye_Password} className="fa-solid fa-eye"></i>}</span>
-                              <span className='errorMsg '>{passwordErrorMsg}</span >
                               <div className="input-group ">
                                   <div className="col-sm text-end">
                                       <NavLink to="/forgetpassword">Forgot Password?</NavLink>
                                   </div>
                               </div>
                               <br />
-                              <button type="button" className="btn btn-primary" 
-                               onClick={LoginHandler} disabled={isLoading}
+                              <button type="button" className="btn btn-primary"
+                               onClick={LoginHandler}
                               > Login&nbsp; <i className="fa-solid fa-right-to-bracket" /></button>
-                              < ToastContainer />
                               <div className="row mt-1">
                                   <div className="col mt-2 pt-2 text-center">
                                       Don't have account?  <NavLink to="/signup" className="bottom-text">Register now</NavLink>
@@ -109,5 +91,4 @@ const Login = () => {
     </div>
   )
 }
-
 export default Login
