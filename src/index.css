@@ -88,12 +88,6 @@ button.btn.btn-primary.add-new-account{
     color: #DC2027;
     border: 1px solid #DC2027;
 }
-.errorMsg{
-    font-size: 0.950rem;
-    color: #ff0000;
-    font-weight: bold;
-    margin-left: 5px;
-}
 .toast{
     background: green;
     color: #fff; 
@@ -107,3 +101,12 @@ button.btn.btn-primary.add-new-account{
     color: #ff0000;
     cursor: pointer;
   }
+  .errorMsg{
+    color: rgb(197, 4, 4);
+    font-weight: bold;
+    font-size:12px;
+}
+.errBorder{
+    outline:none;
+    box-shadow: 0 0 0 0.06rem red;
+}

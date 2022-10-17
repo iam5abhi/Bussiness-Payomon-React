@@ -1,39 +1,28 @@
 import React,{useState} from 'react';
 import { BaseUrl } from '../BaseUrl';
 import { NavLink,useNavigate } from 'react-router-dom';
+import { Field, Form, Formik } from 'formik';
 import axios from 'axios';
+import * as yup from 'yup';
+
+
+const validationSchema = yup.object({
+  AccountholderName: yup
+  .string('')
+  .required('Account Holder Name is required'),
+  BankName: yup
+  .string('')
+  .required('Bank Name Name is required'),
+  AccountNumber: yup
+  .number('Only Number Allowed')
+  .required('Account Number is required'),
+  IFSC_CODE: yup
+  .string('')
+  .required('IFSC_CODE is required'),
+  });
+
 const AddAccount = () => {
   const navigate = useNavigate()
-  const [accontDteails,setAccontDteails] = useState({
-    AccountholderName: "",
-    BankName: "",
-    AccountNumber: "",
-    IFSC_CODE: ""
-  });
-  console.log(accontDteails,"accontDteails")
-  const AddAccountDetailSubmit= (e)=>{
-    e.preventDefault();
-    axios({
-      method: 'post',
-      url: `${BaseUrl.url}/api/addbankdetails`,
-      headers:{
-        'Authorization':`Bearer ${window.localStorage.getItem('refreshToken')}`
-      },
-      data:accontDteails
-    }).then((res)=>{
-      console.log(res.data)
-      navigate('/withdraw-to-bank')
-    })
-    .catch((err)=>{
-     console.log(err.message)
-    })
-  }
-    const inputHandler=(event)=>{
-        setAccontDteails((prestate) => ({
-        ...prestate,
-        [event.target.name]: event.target.value,
-     }));
-    }
   return (
     <div>
        <div className="container-fluid">
@@ -41,33 +30,67 @@ const AddAccount = () => {
             <div className="col-sm-2 col-md-4">
             </div>
             <div className="col-sm-8 col-md-4">
-            <form>
+            <Formik
+               initialValues={{ AccountholderName:"", BankName:"", AccountNumber:"", IFSC_CODE:"" }}
+                 validationSchema={validationSchema}
+                   onSubmit={(values) => {
+                    axios({
+                    method: 'post',
+                    url: `${BaseUrl.url}/api/addbankdetails`,
+                    headers:{
+                      'Authorization':`Bearer ${window.localStorage.getItem('refreshToken')}`
+                    },
+                    data:values
+                  }).then((res)=>{
+                    console.log(res.data)
+                    navigate('/withdraw-to-bank')
+                  })
+                  .catch((err)=>{
+                   console.log(err.message)
+                  })
+                  }}
+                  >
+                  {({ errors, touched }) => (
+               <Form>
                 <div className="section p-4 bg-white border shadow-lg rounded-3">
                 <div className="logo text-center">
                     <img src="img/payoman-logo1.png" style={{width: 300}} />
                 </div>
                 <h4 className="form-heading my-4  text-center">Add Account</h4>
                 <div className="mb-3">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">Business Name</label>
-                    <input type="name" onChange={inputHandler} name="AccountholderName" className="form-control" id="exampleFormControlInput1" placeholder=" Enter Business Name" />
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Account Holder Name</label>
+                    <Field type="text" name="AccountholderName" className={`form-control  ${!errors.AccountholderName ? " " : "errBorder"}`} placeholder=" Enter Business Name" />
+                    {errors.AccountholderName && touched.AccountholderName ? (
+                    <div className='errorMsg'>{errors.AccountholderName}</div>
+                    ) : null}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Bank Name</label>
-                    <input type="text" onChange={inputHandler} name="BankName" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Bank Name" />
+                    <Field type="text" name="BankName" className={`form-control  ${!errors.BankName ? " " : "errBorder"}`} placeholder="Enter Bank Name" />
+                    {errors.BankName && touched.BankName ? (
+                    <div className='errorMsg'>{errors.BankName}</div>
+                    ) : null}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Account Number</label>
-                    <input type="text" onChange={inputHandler} name="AccountNumber" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
+                    <Field type="text" name="AccountNumber" className={`form-control  ${!errors.AccountNumber ? " " : "errBorder"}`} placeholder="xxxx xxxxx xxxx" />
+                    {errors.AccountNumber && touched.AccountNumber ? (
+                    <div className='errorMsg'>{errors.AccountNumber}</div>
+                    ) : null}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlInput1" className="form-label">Swift Code</label>
-                    <input type="text" onChange={inputHandler} name="IFSC_CODE" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="xxxx xxxxx xxxx" />
+                    <Field type="text" name="IFSC_CODE" className={`form-control  ${!errors.IFSC_CODE ? " " : "errBorder"}`} placeholder="xxxx xxxxx xxxx" />
+                    {errors.IFSC_CODE && touched.IFSC_CODE ? (
+                    <div className='errorMsg'>{errors.IFSC_CODE}</div>
+                    ) : null}
                 </div>
                 <br />
-                <button type="submit" className="btn btn-primary mb-3" onClick={AddAccountDetailSubmit}><NavLink to="/withdraw-to-bank" className="text-white">Confirm
-                &nbsp;<i className="fa-solid fa-arrow-right" /></NavLink></button>
+                <button type="submit" className="btn btn-primary mb-3 text-white">Confirm&nbsp;<i className="fa-solid fa-arrow-right" /></button>
                </div>
-            </form>
+            </Form>
+            )}
+            </Formik>
          </div>
       </div>
     </div>

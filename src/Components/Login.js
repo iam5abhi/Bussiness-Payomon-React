@@ -30,7 +30,6 @@ const Login = () => {
        axios.post(`${BaseUrl.url}/api/signin`,
          ragisterData
        ).then((res)=>{
-
            console.log(res.data)
            window.localStorage.setItem('refreshToken',res.data.token)
            setIsLoading(false)
@@ -47,7 +46,7 @@ const Login = () => {
         })) 
     }
      useEffect(() => {
-       let login = localStorage.getItem('login');
+       let login = localStorage.getItem('refreshToken');
        if(login){
          navigate('/')
        }
