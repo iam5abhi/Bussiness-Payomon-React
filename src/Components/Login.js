@@ -12,7 +12,7 @@ import { BaseUrl } from '../BaseUrl';
 
 const Login = () => {
     const navigate = useNavigate()
-    const [passwordShown, setPasswordShown] = useState(false);
+    const [showPassword,setShowPassword]=useState(false)
     const[emailErrorMsg,setEmailErrorMsg]=useState('')
     const [isLoading, setIsLoading] = useState(false);
     const[passwordErrorMsg,setPasswordErrorMsg]=useState('')
@@ -21,6 +21,13 @@ const Login = () => {
         password:"",
     })
     console.log("ragisterData",ragisterData)
+    const eye_Password=()=>{
+      if(!showPassword){
+        setShowPassword(true)
+      }else{
+        setShowPassword(false)
+      }
+    }
     const LoginHandler =()=>{
        if(!ragisterData.emailaddress || !ragisterData.password ){
            setEmailErrorMsg('BusinessEmail your email address')
@@ -51,9 +58,6 @@ const Login = () => {
          navigate('/')
        }
      })
-      const togglePasswordVisiblity = () => {
-        setPasswordShown(passwordShown ? false : true);
-      };
   return (
     <div>
         {isLoading ? <LoadingSpinner /> : <>
@@ -75,11 +79,11 @@ const Login = () => {
                               </div>
                               <span className='errorMsg '>{emailErrorMsg}</span >
                               <div className="input-group mb-1 mt-2">
-                                  <input type={passwordShown ? "text" : "password"}
+                                  <input type={showPassword ? "text" : "password"}
                                   name='password' onChange={inputHandler} 
                                   className="form-control" id="exampleInputPassword1" placeholder="Enter password" />
                               </div>
-                              <span className='eye'><i className='fas fa-eye' onClick={togglePasswordVisiblity}></i></span>
+                              <span className="eye">{!showPassword ? <i onClick={eye_Password} className="fa-sharp fa-solid fa-eye-slash"></i> : <i onClick={eye_Password} className="fa-solid fa-eye"></i>}</span>
                               <span className='errorMsg '>{passwordErrorMsg}</span >
                               <div className="input-group ">
                                   <div className="col-sm text-end">

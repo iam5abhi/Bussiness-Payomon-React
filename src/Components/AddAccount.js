@@ -14,7 +14,8 @@ const validationSchema = yup.object({
   .string('')
   .required('Bank Name Name is required'),
   AccountNumber: yup
-  .number('Only Number Allowed')
+  .string('Only Number Allowed')
+  .matches(/^\+*[0-9]+$/,'Invaild Account Number')
   .required('Account Number is required'),
   IFSC_CODE: yup
   .string('')

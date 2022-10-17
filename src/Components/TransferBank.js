@@ -44,27 +44,30 @@ const TransferBank = () => {
                     <h5>Transfer to</h5>
                   </div>
                 </div>
-                <div className="row py-2 pay">
+                
                   {/* ------------------------start to map -----------------------*/}
-                  <div className="container  border rounded">
+                 
                   {!showAccountDetail?null:
                     showAccountDetail.map((data)=>{
                       return(
-                  <NavLink to="/paymentprocess" className="text-dark" key={data._id}>
-                    <div className="row p-2 pay ">
-                      <div className="col-2">
-                      </div>
-                      <div className="col-8 ps-4">
+                  <div className="container  border rounded mb-2">
+                    <div className="row py-2 pay">
+                     <NavLink to="/paymentprocess" className="text-dark" key={data._id}>
+                       <div className="row p-2 pay ">
+                         <div className="col-2">
+                       <div className="col-8 ps-4">
                         <h6>{data.IFSC_CODE}</h6>
                           <span>{data.AccountNumber}</span>
+                       </div>
                       </div>
                     </div>
                     </NavLink>
+                    </div>
+                    </div> 
                     )
                   })
                   }
-                  </div> 
-                </div>
+                 
                 <div className="row mt-1">
                   <div className="col mt-2 pt-2 text-center">
                     <button type="submit" className="btn btn-primary">

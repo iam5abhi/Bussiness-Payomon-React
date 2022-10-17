@@ -96,6 +96,7 @@ button.btn.btn-primary.add-new-account{
     position: relative;
     bottom: 36px;
     left: 94%;
+    z-index: 20;
   }
   .eye:hover {
     color: #ff0000;
