@@ -11,6 +11,7 @@ const Account = () => {
    const [showTransaction,setshowTransaction]=useState([])
    const [isLoading,setIsLoading]=useState(true)
    const [walletBlance,setwalletBlance]=useState()
+   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
    const [businessUserData,setbusinessUserData]=useState({
       name:"",
       BusinessPhonenumber:""
@@ -146,7 +147,7 @@ const Account = () => {
           </div>
         </div>
         <div className="banner">
-          <img src="img/payobanner.png" className="d-block w-100" alt="..." />
+          <img src="img/Banner.jpg" className="d-block w-100" alt="..." />
         </div>
         <div className="container-board">
           <div className="row pt-3">
@@ -191,8 +192,29 @@ const Account = () => {
                 </>
              }
             </div>
+            <br />
            <div className="banner">
-          <img src="img/payobanner.png" className="d-block w-100" alt="..." />
+            <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+              <div className="carousel-inner">
+                <div className="carousel-item active" data-bs-interval={1000}>
+                  <img src="img/Banner.jpg" className="d-block w-100" alt="img" />
+                </div>
+                <div className="carousel-item" data-bs-interval={1000}>
+                  <img src="img/Banner.jpg" className="d-block w-100" alt="img" />
+                </div>
+                <div className="carousel-item">
+                  <img src="img/Banner.jpg" className="d-block w-100" alt="img" />
+                </div>
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true" />
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true" />
+                <span className="visually-hidden">Next</span>
+              </button>
+          </div>
         </div>
        </div>
       </div>

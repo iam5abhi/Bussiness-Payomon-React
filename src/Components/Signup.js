@@ -13,22 +13,21 @@ const validationSchema = yup.object({
     name: yup
       .string('Enter your name')
       .required('Name is required')
-      .matches(/^[a-zA-Z]{2,}$/,'Enter Vaild Name'),
+      .matches(/^[a-zA-Z_ ]{2,}$/,'Enter Vaild Name'),
     BusinessName: yup
         .string('Enter Your Business Name')
-        .matches(/^[a-zA-Z0-9.]{2,}$/,'Enter vaild Business Name')
+        .matches(/^[a-zA-Z_ ]{2,}$/,'Enter vaild Business Name')
         .required('Business Name is required'),
     BusinessEmail: yup
       .string('Enter Your Business Email')
       .required('Business Email is required')
       .matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "Invalid Email Format"),
-      BusinessPhonenumber: yup
-      .string('Only Number Allowed')
-      .required('Phone Number is required')
-      .matches(/^\+*[0-9]+$/,'Invaild Phone Number'),
+    BusinessPhonenumber: yup
+        .string('Only Number Allowed')
+        .required('Phone Number is required')
+        .matches(/^\+*[0-9]+$/,'Invaild Phone Number'),
     password: yup
         .string('Enter your password')
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.")
         .required('Password is required'),
     confirmpassword: yup
         .string('Enter your Confirm Password')

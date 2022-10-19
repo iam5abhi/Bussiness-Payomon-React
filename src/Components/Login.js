@@ -5,6 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoadingSpinner from './LoadingSpinner';
 import axios from 'axios';
 import { BaseUrl } from '../BaseUrl';
+
+
+
 const Login = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +27,7 @@ const Login = () => {
         setragisterData((prev)=>({
             ...prev,
             [event.target.name]: event.target.value,
-        }))
+        })) 
     }
     const LoginHandler =()=>{
        setIsLoading(true)
@@ -37,6 +40,7 @@ const Login = () => {
            console.log(err)
        })
     };
+
      useEffect(() => {
        let login = localStorage.getItem('refreshToken');
        if(login){
@@ -48,7 +52,7 @@ const Login = () => {
         {isLoading ? <LoadingSpinner /> : <>
         <div className="container-fluid">
               <div className="row">
-                  <div className="col-sm-2 col-md-4">
+                  <div className="col-sm-2 col-md-4">  
                   </div>
                   <div className="col-sm-8 col-md-4">
                       <form>
@@ -58,13 +62,13 @@ const Login = () => {
                               </div>
                                 <h5 className="form-heading mb-4 p-2 text-center">Login to payoman</h5>
                               <div className="input-group mb-1">
-                                  <input type="text"
-                                  name='BusinessEmail' onChange={inputHandler}
+                                  <input type="text" 
+                                  name='BusinessEmail' onChange={inputHandler} 
                                   className="form-control" id="exampleInputNumber1" placeholder="Enter phone number" />
-                              </div>
+                              </div>                              
                               <div className="input-group mb-1 mt-2">
                                   <input type={showPassword ? "text" : "password"}
-                                  name='password' onChange={inputHandler}
+                                  name='password' onChange={inputHandler} 
                                   className="form-control" id="exampleInputPassword1" placeholder="Enter password" />
                               </div>
                               <span className="eye">{!showPassword ? <i onClick={eye_Password} className="fa-sharp fa-solid fa-eye-slash"></i> : <i onClick={eye_Password} className="fa-solid fa-eye"></i>}</span>
@@ -74,7 +78,7 @@ const Login = () => {
                                   </div>
                               </div>
                               <br />
-                              <button type="button" className="btn btn-primary"
+                              <button type="button" className="btn btn-primary" 
                                onClick={LoginHandler}
                               > Login&nbsp; <i className="fa-solid fa-right-to-bracket" /></button>
                               <div className="row mt-1">
@@ -91,4 +95,5 @@ const Login = () => {
     </div>
   )
 }
+
 export default Login
