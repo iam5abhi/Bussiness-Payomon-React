@@ -1,3 +1,3 @@
 exports.BaseUrl={
-    url:'https://payomonapi.herokuapp.com'
+    url:'https://payomon-backend.onrender.com'
 }
